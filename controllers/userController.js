@@ -54,14 +54,47 @@ module.exports.signup = async (req, res, next) => {
 };
 
 module.exports.renderSignin = (req, res, next) => {
-    res.render("users/signin.ejs");
+    try{
+        if (req.user) {
+            req.logout((err) => {
+                if (err) {
+                    return next(err);
+                }
+                req.flash("success", "You logged out successfully");
+                return res.render("users/signin.ejs");
+            });
+        } else {
+            return res.render("users/signin.ejs");
+        }
+    }catch (err) {
+        return next(err);
+    }
+
 };
 
 module.exports.signin = (req, res, next) => {
-    console.log(req.body);
-    // res.render("users/signup.ejs");
-    res.send(req.body)
+    res.cookie('user', JSON.stringify(req.user));
+    req.flash("success", "Login successfull");
+    res.redirect("/");
 };
+
+module.exports.logout = (req, res, next) => {
+    try{
+        if (req.user) {
+            req.logout((err) => {
+                if (err) {
+                    return next(err);
+                }
+                req.flash("success", "You logged out successfully");
+                return res.redirect("/users/signin");
+            });
+        } else {
+            return res.redirect("/users/signin");
+        }
+    }catch(err) {
+        return next(err);
+    }
+}
 
 module.exports.otpVerification = (req, res) => {
     res.render("users/otpVerification");

@@ -1,14 +1,24 @@
 {
-  "name": "mutual-fund",
-  "version": "1.0.0",
-  "description": "",
-  "main": "api.js",
+  "name": "mutual-fund-tracker",
+  "version": "0.0.2",
+  "description": "Mutual fund tracker",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kallol-khatua/mutual-fund-tracker"
+  },
+  "keywords": ["mutual-fund-tracker"],
+  "author": "kallol_khatua",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kallol-khatua/mutual-fund-tracker/issues"
+  },
+  "homepage": "https://github.com/kallol-khatua/mutual-fund-tracker#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
